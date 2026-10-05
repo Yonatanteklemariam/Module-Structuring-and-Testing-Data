@@ -24,5 +24,14 @@
 // execute the code to ensure all tests pass.
 
 export function getCardValue(card) {
-  // TODO: Implement this function
+  if (typeof card !== "string" || !/^(A|[2-9]|10|J|Q|K)[♠♥♦♣]$/.test(card)) {
+    throw new Error("Invalid card");
+  }
+
+  const rank = card.slice(0, -1);
+
+  if (rank === "A") return 11;
+  if (["J", "Q", "K"].includes(rank)) return 10;
+
+  return Number(rank);
 }
